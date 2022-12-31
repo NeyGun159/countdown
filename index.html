@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="app">
+        <div class="container">
+            <ul class="countdown">
+              <li class="countdown-item">
+                <div class="countdown-title">Days</div>
+                <div class="countdown-numb" id="days"></div>
+              </li>
+              <li class="countdown-item">
+                <div class="countdown-title">Hours</div>
+                <div class="countdown-numb" id="hours"></div>
+              </li>
+              <li class="countdown-item">
+                <div class="countdown-title">Minutes</div>
+                <div class="countdown-numb" id="minutes"></div>
+              </li>
+              <li class="countdown-item">
+                <div class="countdown-title">Seconds</div>
+                <div class="countdown-numb" id="seconds"></div>
+              </li>
+            </ul>
+            
+        </div>
+    </div>
+</body>
+<script>
+    const days = document.getElementById("days")
+    const hours = document.getElementById("hours")
+    const minutes = document.getElementById("minutes")
+    const seconds = document.getElementById("seconds")
+    const currentYear = new Date().getFullYear()
+    const newYear = new Date(`January 01 ${currentYear + 1} 00:00:00`)
+
+    function updateCountdown(){
+        const currentTime = new Date()
+        const diff = newYear - currentTime
+        const d = Math.floor(diff / 1000 / 60 / 60 / 24)
+        const h = Math.floor(diff / 1000 / 60 / 60 )%24
+        const m = Math.floor(diff / 1000 / 60 )%60
+        const s = Math.floor(diff / 1000 )%60
+        days.innerHTML = d < 10 ? '0' + d : d
+        hours.innerHTML = h < 10 ? '0' + h : h
+        minutes.innerHTML = m < 10 ? '0' + m : m
+        seconds.innerHTML = s < 10 ? '0' + s : s
+        console.log(s);
+    }
+    setInterval(updateCountdown, 1000)
+</script>
+</html>
